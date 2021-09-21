@@ -1,24 +1,21 @@
-import logo from "./logo.svg";
+// eslint-disable-next-line no-unused-vars
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
+// eslint-disable-next-line no-unused-vars
+import SearchBar from "./components/SearchBar";
+// eslint-disable-next-line no-unused-vars
+import { ResourcesContextProvider } from "./contexts/ResourcesContext";
+import Resource from "./components/Resources";
+// eslint-disable-next-line no-unused-vars
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ResourcesContextProvider>
+        <SearchBar />
+        <Route path="/resources/:id" component={Resource} />
+      </ResourcesContextProvider>
+    </Router>
   );
 }
 
