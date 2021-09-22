@@ -21,9 +21,24 @@ function ResourcesContextProvider({ children }) {
     }
   };
 
+  const addComment = (resourceId, data) => {
+    const existingResource = resources.find(
+      (resource) => resource.id === resourceId
+    );
+
+    setResources([
+      ...resources.filter((resource) => resource.id !== resourceId),
+      {
+        ...existingResource,
+        comments: [data, ...(existingResource.comments ?? [])],
+      },
+    ]);
+  };
+
   return (
     <resourcesContext.Provider
       value={{
+        addComment,
         addResource,
         resources,
       }}
